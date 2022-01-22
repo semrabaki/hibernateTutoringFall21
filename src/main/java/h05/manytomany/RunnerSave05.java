@@ -3,7 +3,13 @@ package h05.manytomany;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.hibernate.internal.build.AllowSysOut;
+
+import hb2.embeddable.C21_Students;
 
 public class RunnerSave05 {
 
@@ -11,9 +17,9 @@ public class RunnerSave05 {
 		
 		
 		Book05 b1= new Book05(10, "Math Book");
-		Book05 b2= new Book05(10, "Science Book");
-		Book05 b3= new Book05(10, "Java Book");
-		Book05 b4= new Book05(10, "Art Book");
+		Book05 b2= new Book05(11, "Science Book");
+		Book05 b3= new Book05(12, "Java Book");
+		Book05 b4= new Book05(13, "Art Book");
 		
 		List<Book05> bookList1= new ArrayList();
 		bookList1.add(b1);
@@ -49,6 +55,26 @@ public class RunnerSave05 {
 		b4.setStudentList(studentList4);
 		
 		System.out.println(std2);
+		
+Configuration con = new Configuration().configure("hibernate.cfg.xml").
+										addAnnotatedClass(Student05.class).
+										addAnnotatedClass(Book05.class);
+		
+		SessionFactory sf= con.buildSessionFactory();
+		
+		Session session= sf.openSession();
+		
+		Transaction tx= session.beginTransaction();
+		
+	    session.save(b1);
+	    session.save(b2);
+	    session.save(b3);
+	    session.save(b4);
+	    
+	    session.save(std1);
+	    session.save(std2);
+		
+		tx.commit();
 		
 
 	}

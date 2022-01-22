@@ -1,5 +1,6 @@
 package h05.manytomany;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 
 @Entity
 public class Student05 {
@@ -15,7 +18,10 @@ public class Student05 {
 	private String name;
 	private int grade;
 	
-	@ManyToMany(cascade=CascadeType.ALL)//When we make updates, deletes, creations we force them using cascaseType.ALL
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)// when we make updates, deletes, creations we force them using cascadeType.ALL
+	@JoinTable(name="STUDENT05_BOOK05", joinColumns = {@JoinColumn(name="std_id")},inverseJoinColumns = {@JoinColumn(name="book_id")} )
 	private List<Book05> booksList= new ArrayList();
 	
 	Student05() {

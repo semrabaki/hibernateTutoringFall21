@@ -3,9 +3,12 @@ package h05.manytomany;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Book05 {
@@ -13,10 +16,14 @@ public class Book05 {
 	private int book_id;
 	private String book_name;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="booksList")
 	private List<Student05>studentList=new ArrayList();
 	
 	
+	Book05() {
+	
+	}
+
 	Book05(int book_id, String book_name) {
 		this.book_id = book_id;
 		this.book_name = book_name;	
