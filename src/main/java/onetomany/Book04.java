@@ -47,10 +47,9 @@ public class Book04 {
 	}
 	@Override
 	public String toString() {
-		return "Book04 [book_id=" + book_id + ", book_name=" + book_name + "]";
+		return "Book04 [book_id=" + book_id + ", book_name=" + book_name + ", student=" + student + "]";
 	}
 
-	
 	
 
 }

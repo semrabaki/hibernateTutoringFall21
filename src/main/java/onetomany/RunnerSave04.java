@@ -30,15 +30,17 @@ public class RunnerSave04 {
 		
 		std1.getBooklist().add(b2);
 		
-		std2.getBooklist().add(b2);
-		
 		std2.getBooklist().add(b3);
-
+		
+		std2.getBooklist().add(b4);
+      
+		std2.setBooklist(std2.getBooklist());
+		
         b1.setStudent(std1);
 		b2.setStudent(std1);
 		
-		b2.setStudent(std2);
 		b3.setStudent(std2);
+		b4.setStudent(std2);
 		
 		System.out.println(b3);
 		

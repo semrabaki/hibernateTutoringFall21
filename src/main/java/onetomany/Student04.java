@@ -3,6 +3,7 @@ package onetomany;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class Student04 {
 	private int grade;
 	
 	
-	@OneToMany(mappedBy="student")
+	@OneToMany(mappedBy="student", orphanRemoval=true,cascade= CascadeType.REMOVE) // it allows removing parent class while there is child class
 	private List<Book04> booklist = new ArrayList();  //one owner might have more than one book that is why we have list
 	
 	
@@ -73,7 +74,7 @@ public class Student04 {
 
 	@Override
 	public String toString() {
-		return "Student04 [std_id=" + std_id + ", name=" + name + ", grade=" + grade + ", booklist=" + booklist + "]";
+		return "Student04 [std_id=" + std_id + ", name=" + name + ", grade=" + grade + "]";
 	}
 
 
