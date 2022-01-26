@@ -1,5 +1,7 @@
 package onetomany;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,12 +40,38 @@ public class RunnerDelete04 {
 //		session.delete(std);
 	
 		
-        book= session.get(Book04.class, 10);
+        book= session.get(Book04.class, 11);
 		
-		session.delete(book);
+		//session.delete(book);
+		
+		//session.delete("Book04",book);
+		
+		
+		
+		//How to get specific field values from a table
+//		int max=Integer.MAX_VALUE;
+//		String hqlQuery="From Student04 WHERE std_id<"+max;
+//		List<Student04> resultList=session.createQuery(hqlQuery).getResultList();
+//		for(Student04 w:resultList)
+//		{
+//			System.out.println(w.getStd_id());
+//		}
+		
+		/////c)wihouttouching Child table delete records from Parent table and from child table
+    	int max=Integer.MAX_VALUE;
+		String hqlQuery="From Student04 WHERE std_id<"+max;
+		List<Student04> resultList=session.createQuery(hqlQuery).getResultList();
+		for(Student04 w:resultList)
+		{
+			std=session.get(Student04.class,w.getStudent_id());
+			session.delete(std);
+		}
 		
 		
 		tx.commit();
+		session.close();
+		
+		
 		
 	}
 

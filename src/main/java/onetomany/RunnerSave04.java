@@ -71,6 +71,7 @@ public class RunnerSave04 {
 		session.save(std3);
 		
 		tx.commit();
+		session.close();
 		
 		
 	}

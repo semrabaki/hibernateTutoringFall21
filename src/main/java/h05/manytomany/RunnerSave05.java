@@ -15,7 +15,7 @@ public class RunnerSave05 {
 
 	public static void main(String[] args) {
 		
-		
+		//In here you are creating a schema it is the most impartant part
 		Book05 b1= new Book05(10, "Math Book");
 		Book05 b2= new Book05(11, "Science Book");
 		Book05 b3= new Book05(12, "Java Book");
@@ -31,9 +31,14 @@ public class RunnerSave05 {
 		bookList2.add(b3);
 		bookList2.add(b4);
 		
-		Student05 std1= new Student05(101, "Daulet",10, bookList1);
+		Student05 std1= new Student05(101, "Daulet",10, bookList1); 
 		Student05 std2= new Student05(102, "Daren",10, bookList2);
 		
+		System.out.println(std1);
+		System.out.println(std2);
+		
+		
+		//in here for each book we are assigning  students
 		List<Student05>studentList= new ArrayList();
 		studentList.add(std1);
 		b1.setStudentList(studentList);
@@ -75,6 +80,7 @@ Configuration con = new Configuration().configure("hibernate.cfg.xml").
 	    session.save(std2);
 		
 		tx.commit();
+		session.close();
 		
 
 	}

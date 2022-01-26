@@ -16,7 +16,7 @@ public class Book05 {
 	private int book_id;
 	private String book_name;
 	
-	@ManyToMany(mappedBy="booksList")
+	@ManyToMany(mappedBy="booksList")  //Books table will get the books by booksList. that is why we mapp it with bookslist  so it will create only one connection table
 	private List<Student05>studentList=new ArrayList();
 	
 	
@@ -48,10 +48,12 @@ public class Book05 {
 	public void setStudentList(List<Student05> studentList) {
 		this.studentList = studentList;
 	}
+
 	@Override
 	public String toString() {
-		return "Book05 [book_id=" + book_id + ", book_name=" + book_name + "]";
+		return "Book05 [book_id=" + book_id + ", book_name=" + book_name + ", studentList=" + studentList + "]";
 	}
+	
 	
 	
 
