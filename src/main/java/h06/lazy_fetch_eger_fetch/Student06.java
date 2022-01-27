@@ -14,7 +14,16 @@ public class Student06 {
 	private int std_id;
 	private String name;
 	private int grade;
+	//In Lazy fetch initialization time is shorter it is faster and you are fething less memory it means you will have more avaliable memory
+	//In Eager fetch we get huge data that is why initilzation time is longer 
+	//and it consumes memory it makes your application slower it will impact the performance of the application
+	//
 	
+	//Note: Hibernate works in Lazy Fetch as default
+	       // To convert Lazxy Fetch to Eager Fetch you should type  fetch=FetchType.EAGER into one to many
+	      // if you type fetch=FetchType.EAGER into @OneToMany all fethes will behave like Eager fetch
+	     //   If you type fetch=FetchType.EAGER inot @ManyToOne fethces from child class will behave like Eager fetch,
+	//fetchs from parent class will behave like lazy fetch
 	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
 	private List<Book06>bookList= new ArrayList();
 

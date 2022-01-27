@@ -54,8 +54,10 @@ public class RunnerFetch07 {
 	
 	Book07 b2=session2.get(Book07.class,10);
 	
-	b2=session2.get(Book07.class,12);
-	b2=session2.get(Book07.class,12);
+	//When you fetch a new data, your code should hit database, but if you want to get same data
+	//again again hibenrate will not git the database again and again. It will use cache memeory to fect data
+	b2=session2.get(Book07.class,12); //1.hit
+	b2=session2.get(Book07.class,12); //cache
 	tx2.commit();
 	
 	System.out.println(b2);

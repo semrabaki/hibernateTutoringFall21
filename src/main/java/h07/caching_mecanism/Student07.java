@@ -14,8 +14,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 
 @Entity
-@Cacheable
-@Cache(region="Student07", usage=CacheConcurrencyStrategy.READ_WRITE)
+//@Cacheable
+//@Cache(region="Student07", usage=CacheConcurrencyStrategy.READ_WRITE) //Read_Write means that the data in the second cache mmeory can be read and updated
 public class Student07 {
 	@Id
 	private int std_id;
@@ -24,7 +24,15 @@ public class Student07 {
 	
 	@OneToMany(mappedBy="student")
 	private List<Book07>bookList= new ArrayList();
+	
+	//Every database has a hit limit.once it reaches the limit it will be blocked. that is why we need to limit the number of hit.
+		//that is why hibernate has cache memory and puts the data in cach and for already reached data hibernate used the cache memory so it does not hit
+		//the database. It keeps the data inthe caching mechanism until the session closed.
+		//Hibernate uses caching mechanism as default. hibernate alsa has the second level caching mechanism.
+		//
 
+	//Second level caching memory is like a second stogare when any session fetch the data it will be put inthe second caching memory. Whne the session closed 
+	//the first caching memory is cleared but second caching memory wtill has the data. application first check the first caching and then second caching for data
 	Student07() {
 		
 	}
